@@ -22,6 +22,14 @@ class Index extends Component
     public $editingId = null;
     public $showModal = false;
 
+    // Search & Pagination
+    public $search = '';
+    public $perPage = 10;
+    public $sortBy = 'created_at';
+    public $sortDirection = 'desc';
+    public $saleFilter = '';
+    public $productFilter = '';
+
     protected SaleItemService $saleItemService;
 
     public function boot(SaleItemService $saleItemService): void
@@ -137,10 +145,74 @@ class Index extends Component
         $this->showModal = false;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSaleFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingProductFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
+    public function clearFilters()
+    {
+        $this->search = '';
+        $this->saleFilter = '';
+        $this->productFilter = '';
+        $this->resetPage();
+    }
+
     public function render()
     {
+        $query = SaleItem::with(['sale', 'product']);
+
+        // Search functionality
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('qty', 'like', '%' . $this->search . '%')
+                    ->orWhere('price', 'like', '%' . $this->search . '%')
+                    ->orWhere('subtotal', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        // Sale filter
+        if ($this->saleFilter) {
+            $query->where('sale_id', $this->saleFilter);
+        }
+
+        // Product filter
+        if ($this->productFilter) {
+            $query->where('product_id', $this->productFilter);
+        }
+
+        // Sorting
+        $query->orderBy($this->sortBy, $this->sortDirection);
+
         return view('livewire.sale-item.index', [
-            'saleItems' => SaleItem::with(['sale', 'product'])->latest()->paginate(10)
+            'saleItems' => $query->paginate($this->perPage),
+            'sales' => \App\Models\Sale::select('id', 'created_at')->get(),
+            'products' => \App\Models\Product::select('id', 'name')->get()
         ]);
     }
 }

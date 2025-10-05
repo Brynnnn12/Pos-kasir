@@ -47,13 +47,41 @@
     @endif
 
     <x-ui.card>
-        <x-ui.table :headers="['No', 'Name', 'Description', 'Actions']">
+        <!-- Search & Filters -->
+        <div class="mb-6 space-y-4">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <!-- Search -->
+                <div class="flex-1">
+                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <input type="text" wire:model.live.debounce.300ms="search" id="search"
+                        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="Search categories...">
+                </div>
+
+                <!-- Per Page -->
+                <div class="sm:w-48">
+                    <label for="perPage" class="block text-sm font-medium text-gray-700 mb-1">Per Page</label>
+                    <select wire:model.live="perPage" id="perPage"
+                        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="5">5 per page</option>
+                        <option value="10">10 per page</option>
+                        <option value="25">25 per page</option>
+                        <option value="50">50 per page</option>
+                        <option value="100">100 per page</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <x-ui.table :headers="['No', 'Name', 'Description', 'Created', 'Actions']" :sortable-headers="['', 'name', 'description', 'created_at', '']" :sort-by="$sortBy" :sort-direction="$sortDirection">
             @forelse ($categories as $category)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}
-                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {{ $categories->firstItem() + $loop->index }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $category->name }}</td>
                     <td class="px-6 py-4 text-sm text-gray-500">{{ $category->description }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $category->created_at->format('d/m/Y H:i') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <x-ui.button wire:click="edit({{ $category->id }})" class="mr-2">
                             Edit
@@ -66,11 +94,18 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">
                         No categories found.
                     </td>
                 </tr>
             @endforelse
+            </tbody>
+            </table>
         </x-ui.table>
+
+        <!-- Pagination -->
+        <div class="mt-6">
+            {{ $categories->links() }}
+        </div>
     </x-ui.card>
 </div>

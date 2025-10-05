@@ -22,6 +22,15 @@ class Index extends Component
     public $editingId = null;
     public $showModal = false;
 
+    // Search & Pagination
+    public $search = '';
+    public $perPage = 10;
+    public $sortBy = 'created_at';
+    public $sortDirection = 'desc';
+    public $paymentTypeFilter = '';
+    public $dateFrom = '';
+    public $dateTo = '';
+
     protected SaleService $saleService;
 
     public function boot(SaleService $saleService): void
@@ -133,10 +142,81 @@ class Index extends Component
         $this->showModal = false;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPaymentTypeFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingDateFrom()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingDateTo()
+    {
+        $this->resetPage();
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
+    public function clearFilters()
+    {
+        $this->search = '';
+        $this->paymentTypeFilter = '';
+        $this->dateFrom = '';
+        $this->dateTo = '';
+        $this->resetPage();
+    }
+
     public function render()
     {
+        $query = Sale::with('user')->where('user_id', Auth::id());
+
+        // Search functionality
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('total', 'like', '%' . $this->search . '%')
+                    ->orWhere('payment_type', 'like', '%' . $this->search . '%')
+                    ->orWhere('payment_amount', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        // Payment type filter
+        if ($this->paymentTypeFilter) {
+            $query->where('payment_type', $this->paymentTypeFilter);
+        }
+
+        // Date range filter
+        if ($this->dateFrom) {
+            $query->whereDate('created_at', '>=', $this->dateFrom);
+        }
+        if ($this->dateTo) {
+            $query->whereDate('created_at', '<=', $this->dateTo);
+        }
+
+        // Sorting
+        $query->orderBy($this->sortBy, $this->sortDirection);
+
         return view('livewire.sale.index', [
-            'sales' => Sale::with('user')->where('user_id', Auth::id())->latest()->paginate(10)
+            'sales' => $query->paginate($this->perPage)
         ]);
     }
 }

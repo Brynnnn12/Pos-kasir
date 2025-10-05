@@ -1,6 +1,6 @@
 <div class="space-y-6">
     <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-900">Product Management</h1>
+        <h1 class="text-2xl font-bold text-gray-900">Category Management</h1>
         <?php if (isset($component)) { $__componentOriginal3b28f631feb44624968320500b31440d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3b28f631feb44624968320500b31440d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.primary-button','data' => ['wire:click' => 'create']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -11,7 +11,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['wire:click' => 'create']); ?>
-            Add New Product
+            Add New Category
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal3b28f631feb44624968320500b31440d)): ?>
@@ -24,7 +24,7 @@
 <?php endif; ?>
     </div>
 
-    <!-- Modal for Create/Edit Product -->
+    <!-- Modal for Create/Edit Category -->
     <!--[if BLOCK]><![endif]--><?php if($showModal): ?>
         <div class="fixed inset-0 z-50 overflow-y-auto">
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -37,60 +37,10 @@
                         <div class="sm:flex sm:items-start">
                             <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
-                                    <?php echo e($editingId ? 'Edit Product' : 'Create New Product'); ?>
+                                    <?php echo e($editingId ? 'Edit Category' : 'Create New Category'); ?>
 
                                 </h3>
-                                <form id="product-form" wire:submit.prevent="<?php echo e($editingId ? 'update' : 'store'); ?>"
-                                    class="space-y-4">
-                                    <div>
-                                        <?php if (isset($component)) { $__componentOriginal4527ff02fe530a7c6032275c54e056f5 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4527ff02fe530a7c6032275c54e056f5 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-label','data' => ['value' => 'Category']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('form.input-label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['value' => 'Category']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4527ff02fe530a7c6032275c54e056f5)): ?>
-<?php $attributes = $__attributesOriginal4527ff02fe530a7c6032275c54e056f5; ?>
-<?php unset($__attributesOriginal4527ff02fe530a7c6032275c54e056f5); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4527ff02fe530a7c6032275c54e056f5)): ?>
-<?php $component = $__componentOriginal4527ff02fe530a7c6032275c54e056f5; ?>
-<?php unset($__componentOriginal4527ff02fe530a7c6032275c54e056f5); ?>
-<?php endif; ?>
-                                        <select wire:model="category_id" name="category_id" id="category_id"
-                                            class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm transition-colors mt-1">
-                                            <option value="">Select Category</option>
-                                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = \App\Models\Category::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                                        </select>
-                                        <?php if (isset($component)) { $__componentOriginal8d499d75702cee5e9aae94bf7f660f12 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal8d499d75702cee5e9aae94bf7f660f12 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-error','data' => ['messages' => $errors->get('category_id'),'class' => 'mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('form.input-error'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('category_id')),'class' => 'mt-1']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal8d499d75702cee5e9aae94bf7f660f12)): ?>
-<?php $attributes = $__attributesOriginal8d499d75702cee5e9aae94bf7f660f12; ?>
-<?php unset($__attributesOriginal8d499d75702cee5e9aae94bf7f660f12); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal8d499d75702cee5e9aae94bf7f660f12)): ?>
-<?php $component = $__componentOriginal8d499d75702cee5e9aae94bf7f660f12; ?>
-<?php unset($__componentOriginal8d499d75702cee5e9aae94bf7f660f12); ?>
-<?php endif; ?>
-                                    </div>
+                                <form wire:submit.prevent="<?php echo e($editingId ? 'update' : 'store'); ?>" class="space-y-4">
                                     <?php if (isset($component)) { $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input','data' => ['wire:model' => 'name','name' => 'name','label' => 'Name','required' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -111,57 +61,17 @@
 <?php $component = $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b; ?>
 <?php unset($__componentOriginal5c2a97ab476b69c1189ee85d1a95204b); ?>
 <?php endif; ?>
-                                    <?php if (isset($component)) { $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input','data' => ['wire:model' => 'price','name' => 'price','label' => 'Price','type' => 'number','step' => '0.01','required' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('form.input'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'price','name' => 'price','label' => 'Price','type' => 'number','step' => '0.01','required' => true]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b)): ?>
-<?php $attributes = $__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b; ?>
-<?php unset($__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal5c2a97ab476b69c1189ee85d1a95204b)): ?>
-<?php $component = $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b; ?>
-<?php unset($__componentOriginal5c2a97ab476b69c1189ee85d1a95204b); ?>
-<?php endif; ?>
-                                    <?php if (isset($component)) { $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input','data' => ['wire:model' => 'stock','name' => 'stock','label' => 'Stock','type' => 'number','required' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('form.input'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'stock','name' => 'stock','label' => 'Stock','type' => 'number','required' => true]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b)): ?>
-<?php $attributes = $__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b; ?>
-<?php unset($__attributesOriginal5c2a97ab476b69c1189ee85d1a95204b); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal5c2a97ab476b69c1189ee85d1a95204b)): ?>
-<?php $component = $__componentOriginal5c2a97ab476b69c1189ee85d1a95204b; ?>
-<?php unset($__componentOriginal5c2a97ab476b69c1189ee85d1a95204b); ?>
-<?php endif; ?>
                                     <div>
                                         <?php if (isset($component)) { $__componentOriginal4527ff02fe530a7c6032275c54e056f5 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4527ff02fe530a7c6032275c54e056f5 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-label','data' => ['value' => 'Image']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-label','data' => ['value' => 'Description']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form.input-label'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['value' => 'Image']); ?>
+<?php $component->withAttributes(['value' => 'Description']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal4527ff02fe530a7c6032275c54e056f5)): ?>
@@ -172,18 +82,18 @@
 <?php $component = $__componentOriginal4527ff02fe530a7c6032275c54e056f5; ?>
 <?php unset($__componentOriginal4527ff02fe530a7c6032275c54e056f5); ?>
 <?php endif; ?>
-                                        <input wire:model="image" type="file" name="image" id="image"
-                                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 mt-1">
+                                        <textarea wire:model="description" name="description" id="description" rows="3"
+                                            class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm transition-colors mt-1"></textarea>
                                         <?php if (isset($component)) { $__componentOriginal8d499d75702cee5e9aae94bf7f660f12 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8d499d75702cee5e9aae94bf7f660f12 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-error','data' => ['messages' => $errors->get('image'),'class' => 'mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form.input-error','data' => ['messages' => $errors->get('description'),'class' => 'mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form.input-error'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('image')),'class' => 'mt-1']); ?>
+<?php $component->withAttributes(['messages' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($errors->get('description')),'class' => 'mt-1']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8d499d75702cee5e9aae94bf7f660f12)): ?>
@@ -194,24 +104,34 @@
 <?php $component = $__componentOriginal8d499d75702cee5e9aae94bf7f660f12; ?>
 <?php unset($__componentOriginal8d499d75702cee5e9aae94bf7f660f12); ?>
 <?php endif; ?>
-                                        <!--[if BLOCK]><![endif]--><?php if($editingId && ($product = \App\Models\Product::find($editingId)) && $product->image): ?>
-                                            <div class="mt-2">
-                                                <img src="<?php echo e(asset('storage/' . $product->image)); ?>" alt="Current Image"
-                                                    class="w-20 h-20 object-cover rounded">
-                                                <p class="text-sm text-gray-500 mt-1">Current image</p>
-                                            </div>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button type="submit" form="product-form"
-                            class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <?php if (isset($component)) { $__componentOriginal3b28f631feb44624968320500b31440d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3b28f631feb44624968320500b31440d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.primary-button','data' => ['wire:click' => ''.e($editingId ? 'update' : 'store').'','class' => 'ml-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.primary-button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:click' => ''.e($editingId ? 'update' : 'store').'','class' => 'ml-3']); ?>
                             <?php echo e($editingId ? 'Update' : 'Create'); ?>
 
-                        </button>
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3b28f631feb44624968320500b31440d)): ?>
+<?php $attributes = $__attributesOriginal3b28f631feb44624968320500b31440d; ?>
+<?php unset($__attributesOriginal3b28f631feb44624968320500b31440d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3b28f631feb44624968320500b31440d)): ?>
+<?php $component = $__componentOriginal3b28f631feb44624968320500b31440d; ?>
+<?php unset($__componentOriginal3b28f631feb44624968320500b31440d); ?>
+<?php endif; ?>
                         <?php if (isset($component)) { $__componentOriginal0b8260326e556cf5e7068339cd048740 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal0b8260326e556cf5e7068339cd048740 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.secondary-button','data' => ['wire:click' => '$set(\'showModal\', false)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -257,19 +177,7 @@
                     <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
                     <input type="text" wire:model.live.debounce.300ms="search" id="search"
                         class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Search products...">
-                </div>
-
-                <!-- Category Filter -->
-                <div class="sm:w-48">
-                    <label for="categoryFilter" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                    <select wire:model.live="categoryFilter" id="categoryFilter"
-                        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">All Categories</option>
-                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                    </select>
+                        placeholder="Search categories...">
                 </div>
 
                 <!-- Per Page -->
@@ -289,54 +197,33 @@
 
         <?php if (isset($component)) { $__componentOriginal793d2b22631f88b8a3d00569a12acf88 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal793d2b22631f88b8a3d00569a12acf88 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.table','data' => ['headers' => ['No', 'Image', 'Name', 'Category', 'Price', 'Stock', 'Created', 'Actions'],'sortableHeaders' => ['', '', 'name', '', 'price', 'stock', 'created_at', ''],'sortBy' => $sortBy,'sortDirection' => $sortDirection]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.table','data' => ['headers' => ['No', 'Name', 'Description', 'Created', 'Actions'],'sortableHeaders' => ['', 'name', 'description', 'created_at', ''],'sortBy' => $sortBy,'sortDirection' => $sortDirection]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('ui.table'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['headers' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['No', 'Image', 'Name', 'Category', 'Price', 'Stock', 'Created', 'Actions']),'sortable-headers' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['', '', 'name', '', 'price', 'stock', 'created_at', '']),'sort-by' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sortBy),'sort-direction' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sortDirection)]); ?>
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+<?php $component->withAttributes(['headers' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['No', 'Name', 'Description', 'Created', 'Actions']),'sortable-headers' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['', 'name', 'description', 'created_at', '']),'sort-by' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sortBy),'sort-direction' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sortDirection)]); ?>
+            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        <?php echo e($products->firstItem() + $loop->index); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <!--[if BLOCK]><![endif]--><?php if($product->image): ?>
-                            <img src="<?php echo e(asset('storage/' . $product->image)); ?>" alt="<?php echo e($product->name); ?>"
-                                class="w-12 h-12 object-cover rounded">
-                        <?php else: ?>
-                            <div class="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
-                                <i class="fas fa-image text-gray-400"></i>
-                            </div>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?php echo e($product->name); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <?php echo e($product->category->name); ?>
-
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp
-                        <?php echo e(number_format($product->price, 0, ',', '.')); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <span class="<?php echo e($product->stock <= 5 ? 'text-red-600 font-semibold' : 'text-green-600'); ?>">
-                            <?php echo e($product->stock); ?>
-
-                        </span>
-                    </td>
+                        <?php echo e($categories->firstItem() + $loop->index); ?></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?php echo e($category->name); ?></td>
+                    <td class="px-6 py-4 text-sm text-gray-500"><?php echo e($category->description); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <?php echo e($product->created_at->format('d/m/Y H:i')); ?></td>
+                        <?php echo e($category->created_at->format('d/m/Y H:i')); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['wire:click' => 'edit('.e($product->id).')','class' => 'mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['wire:click' => 'edit('.e($category->id).')','class' => 'mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('ui.button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'edit('.e($product->id).')','class' => 'mr-2']); ?>
+<?php $component->withAttributes(['wire:click' => 'edit('.e($category->id).')','class' => 'mr-2']); ?>
                             Edit
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -350,14 +237,14 @@
 <?php endif; ?>
                         <?php if (isset($component)) { $__componentOriginal39c56033f8e3e158ea48362b5e2dd94b = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal39c56033f8e3e158ea48362b5e2dd94b = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.danger-button','data' => ['wire:click' => 'delete('.e($product->id).')','wire:confirm' => 'Are you sure you want to delete this product?']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.danger-button','data' => ['wire:click' => 'delete('.e($category->id).')','wire:confirm' => 'Are you sure you want to delete this category?']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('ui.danger-button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'delete('.e($product->id).')','wire:confirm' => 'Are you sure you want to delete this product?']); ?>
+<?php $component->withAttributes(['wire:click' => 'delete('.e($category->id).')','wire:confirm' => 'Are you sure you want to delete this category?']); ?>
                             Delete
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -373,11 +260,13 @@
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <tr>
-                    <td colspan="8" class="px-6 py-4 text-center text-gray-500">
-                        No products found.
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                        No categories found.
                     </td>
                 </tr>
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            </tbody>
+            </table>
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal793d2b22631f88b8a3d00569a12acf88)): ?>
@@ -391,7 +280,7 @@
 
         <!-- Pagination -->
         <div class="mt-6">
-            <?php echo e($products->links()); ?>
+            <?php echo e($categories->links()); ?>
 
         </div>
      <?php echo $__env->renderComponent(); ?>
@@ -405,4 +294,4 @@
 <?php unset($__componentOriginaldae4cd48acb67888a4631e1ba48f2f93); ?>
 <?php endif; ?>
 </div>
-<?php /**PATH D:\Projek\midtrans\Pos-kasir\resources\views/livewire/product/index.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Projek\midtrans\Pos-kasir\resources\views/livewire/category/index.blade.php ENDPATH**/ ?>

@@ -19,6 +19,12 @@ class Index extends Component
     public $editingId = null;
     public $showModal = false;
 
+    // Search & Pagination
+    public $search = '';
+    public $perPage = 10;
+    public $sortBy = 'created_at';
+    public $sortDirection = 'desc';
+
     protected CategoryService $categoryService;
 
     public function boot(CategoryService $categoryService): void
@@ -107,10 +113,43 @@ class Index extends Component
     }
 
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     public function render()
     {
+        $query = Category::query();
+
+        // Search functionality
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        // Sorting
+        $query->orderBy($this->sortBy, $this->sortDirection);
+
         return view('livewire.category.index', [
-            'categories' => Category::latest()->paginate(10)
+            'categories' => $query->paginate($this->perPage)
         ]);
     }
 }

@@ -3,6 +3,9 @@
 $__newAttributes = [];
 $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
     'headers' => [],
+    'sortableHeaders' => [],
+    'sortBy' => null,
+    'sortDirection' => 'asc',
     'striped' => true,
     'hover' => true,
     'responsive' => true,
@@ -23,6 +26,9 @@ unset($__newAttributes);
 
 foreach (array_filter(([
     'headers' => [],
+    'sortableHeaders' => [],
+    'sortBy' => null,
+    'sortDirection' => 'asc',
     'striped' => true,
     'hover' => true,
     'responsive' => true,
@@ -43,17 +49,37 @@ unset($__defined_vars, $__key, $__value); ?>
         <!--[if BLOCK]><![endif]--><?php if(!empty($headers)): ?>
             <thead class="bg-gray-50">
                 <tr>
-                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $headers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $header): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $headers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $header): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <?php echo e($header); ?>
+                            <!--[if BLOCK]><![endif]--><?php if(isset($sortableHeaders[$index]) && $sortableHeaders[$index]): ?>
+                                <button wire:click="sortBy('<?php echo e($sortableHeaders[$index]); ?>')"
+                                    class="flex items-center hover:text-gray-700">
+                                    <?php echo e($header); ?>
 
+                                    <!--[if BLOCK]><![endif]--><?php if($sortBy === $sortableHeaders[$index]): ?>
+                                        <svg class="ml-1 w-4 h-4 <?php echo e($sortDirection === 'asc' ? 'rotate-180' : ''); ?>"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                </button>
+                            <?php else: ?>
+                                <?php echo e($header); ?>
+
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         </th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                 </tr>
             </thead>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php elseif(isset($header)): ?>
+            <thead class="bg-gray-50">
+                <?php echo e($header); ?>
 
+            </thead>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
         <tbody class="bg-white divide-y divide-gray-200 <?php echo e($striped ? '' : 'divide-y-0'); ?>">
             <?php echo e($slot); ?>

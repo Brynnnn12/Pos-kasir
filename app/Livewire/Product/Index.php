@@ -22,6 +22,13 @@ class Index extends Component
     public $editingId = null;
     public $showModal = false;
 
+    // Search & Pagination
+    public $search = '';
+    public $perPage = 10;
+    public $sortBy = 'created_at';
+    public $sortDirection = 'desc';
+    public $categoryFilter = '';
+
     protected ProductService $productService;
 
     public function boot(ProductService $productService): void
@@ -156,10 +163,55 @@ class Index extends Component
         $this->showModal = false;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingCategoryFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     public function render()
     {
+        $query = Product::with('category');
+
+        // Search functionality
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('price', 'like', '%' . $this->search . '%')
+                    ->orWhere('stock', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        // Category filter
+        if ($this->categoryFilter) {
+            $query->where('category_id', $this->categoryFilter);
+        }
+
+        // Sorting
+        $query->orderBy($this->sortBy, $this->sortDirection);
+
         return view('livewire.product.index', [
-            'products' => Product::with('category')->latest()->paginate(10)
+            'products' => $query->paginate($this->perPage),
+            'categories' => \App\Models\Category::all()
         ]);
     }
 }
