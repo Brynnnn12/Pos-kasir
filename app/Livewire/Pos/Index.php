@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\SaleItem;
 use App\Services\SaleService;
 use App\Services\SaleItemService;
+use App\Services\ReceiptService;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,11 @@ class Index extends Component
     public $change_amount = 0.0;
 
     protected $listeners = ['productSelected' => 'addToCart'];
+
+    public function __construct()
+    {
+        // ReceiptService will be initialized only when needed
+    }
 
     public function mount()
     {
@@ -114,7 +120,9 @@ class Index extends Component
             return;
         }
 
-        DB::transaction(function () {
+        $saleId = null;
+
+        DB::transaction(function () use (&$saleId) {
             // Create Sale
             $sale = Sale::create([
                 'user_id' => Auth::id(),
@@ -123,6 +131,8 @@ class Index extends Component
                 'payment_amount' => $this->payment_amount,
                 'change_amount' => $this->change_amount,
             ]);
+
+            $saleId = $sale->id;
 
             // Create Sale Items and update stock
             foreach ($this->cart as $item) {
@@ -146,7 +156,14 @@ class Index extends Component
         $this->payment_amount = 0.0;
         $this->change_amount = 0.0;
 
-        $this->js('Swal.fire({icon: "success", title: "Success!", text: "Transaction completed successfully.", toast: true, position: "top-end", showConfirmButton: false, timer: 3000})');
+        // Print receipt
+        try {
+            $receiptService = new ReceiptService();
+            $receiptService->printReceipt($saleId);
+            $this->js('Swal.fire({icon: "success", title: "Success!", text: "Transaction completed successfully. Receipt printed.", toast: true, position: "top-end", showConfirmButton: false, timer: 3000})');
+        } catch (\Exception $e) {
+            $this->js('Swal.fire({icon: "warning", title: "Transaction Success!", text: "Transaction completed but receipt printing failed: ' . $e->getMessage() . '", toast: true, position: "top-end", showConfirmButton: false, timer: 5000})');
+        }
     }
 
     private function resetCart()

@@ -23,12 +23,6 @@
                                 class="text-gray-700 dark:text-gray-300 hover:text-laravel transition-colors duration-200 font-medium">
                                 Log in
                             </a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="px-4 py-2 rounded-lg bg-laravel text-white hover:bg-red-600 transition-colors duration-200 font-medium">
-                                    Register
-                                </a>
-                            @endif
                         @endauth
                     @endif
 
@@ -73,10 +67,6 @@
                     <a href="{{ route('login') }}"
                         class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Log
                         in</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="block px-3 py-2 rounded-md text-base font-medium bg-laravel text-white">Register</a>
-                    @endif
                 @endauth
             @endif
         </div>

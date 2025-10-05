@@ -55,12 +55,6 @@
                             <i class="fas fa-user mr-3"></i>
                             <span>Profile</span>
                         </a>
-                        <a href="{{ route('settings.index') }}" wire:navigate
-                            class="flex items-center p-3 rounded-lg mb-2 transition-all hover:bg-blue-700 cursor-pointer {{ request()->routeIs('settings.*') ? 'bg-blue-700' : '' }}"
-                            @click="isSidebarOpen = false">
-                            <i class="fas fa-cog mr-3"></i>
-                            <span>Settings</span>
-                        </a>
                     </nav>
                 </div>
             </div>

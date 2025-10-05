@@ -18,14 +18,21 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/pos', App\Livewire\Pos\Index::class)->name('home');
     Route::get('/transactions', App\Livewire\Transaction\Index::class)->name('transactions.index');
+    Route::get('/test-receipt', function () {
+        try {
+            $receiptService = new \App\Services\ReceiptService();
+            $receiptService->testPrint();
+            return response()->json(['message' => 'Test receipt printed successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    })->name('test.receipt');
 });
 
 // Dashboard routes
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/overview', [DashboardController::class, 'index'])->name('overview');
-    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings.index');
-    Route::put('/settings', [DashboardController::class, 'updateSettings'])->name('settings.update');
 
     Route::get('/categories', \App\Livewire\Category\Index::class)->name('categories.index');
 

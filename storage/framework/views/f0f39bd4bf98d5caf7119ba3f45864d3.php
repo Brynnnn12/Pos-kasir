@@ -93,6 +93,8 @@
 <?php unset($__componentOriginalf4bb5a8e7d7746ba09a8b9ffce22b5fb); ?>
 <?php endif; ?>
     <?php echo $__env->yieldPushContent('scripts'); ?>
+    <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
+
 </body>
 
 </html>
