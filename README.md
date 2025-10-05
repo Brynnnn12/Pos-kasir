@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
   <img src="https://img.shields.io/badge/Chart.js-4.x-FF6384?style=for-the-badge&logo=chart.js&logoColor=white" alt="Chart.js">
   <img src="https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Version-1.1.0-blue?style=for-the-badge" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
@@ -19,20 +20,112 @@
 
 POS-Kasir adalah sistem Point of Sale yang dibangun dengan **Tall Stack Laravel 12** (Tailwind CSS, Alpine.js, Livewire) yang menyediakan solusi lengkap untuk mengelola penjualan ritel. Sistem ini dirancang untuk kemudahan penggunaan dengan interface yang modern, responsif, dan fitur-fitur canggih untuk operasional bisnis ritel sehari-hari.
 
+### 🎉 **Latest Updates (v1.1.0)**
+
+-   ✨ **Enhanced Table System** - Semua tabel dashboard sekarang menggunakan komponen reusable dengan sorting terintegrasi
+-   📱 **Responsive Filter Layouts** - Layout filter yang dioptimalkan untuk semua ukuran layar
+-   🔄 **Real-time Sorting** - Sorting functionality pada semua kolom tabel (Name, Price, Stock, Date)
+-   🎨 **UI/UX Improvements** - Interface yang lebih konsisten dan user-friendly
+-   📊 **Advanced Analytics** - Dashboard dengan statistik real-time dan chart interaktif
+
+### 🚀 **Coming Soon: Auto Product Scan**
+
+Kami sedang mengembangkan fitur scan produk otomatis yang akan memungkinkan:
+
+-   📱 Scan barcode/QR code menggunakan kamera device
+-   🖥️ Support webcam untuk desktop
+-   ⚡ Instant product lookup dan cart addition
+-   📊 Scan analytics dan history tracking
+
 ### ✨ Fitur Utama
 
--   🛒 **POS Transaction** - Interface transaksi penjualan real-time
--   📊 **Dashboard Analytics** - Dashboard dengan chart interaktif dan statistik penjualan
--   📋 **Transaction Management** - Manajemen transaksi dengan fitur pencarian dan filter
+-   🛒 **POS Transaction** - Interface transaksi penjualan real-time dengan cart management
+-   📊 **Dashboard Analytics** - Dashboard dengan chart interaktif dan statistik penjualan real-time
+-   📋 **Transaction Management** - Manajemen transaksi dengan fitur pencarian, filter, dan sorting advanced
 -   👥 **Role & Permission System** - Kontrol akses berbasis role menggunakan Spatie Laravel Permission
--   📱 **Responsive Design** - UI modern dan responsif untuk semua perangkat
--   🔔 **Sweet Alert Notifications** - Notifikasi cantik dan interaktif
--   📄 **PDF Receipt Generation** - Generate struk penjualan dalam format PDF
--   🎨 **Modern UI/UX** - Desain interface yang intuitif dan user-friendly
--   🔄 **Real-time Updates** - Update data real-time menggunakan Livewire
+-   📱 **Responsive Design** - UI modern dan responsif untuk semua perangkat dengan grid layout adaptive
+-   🔔 **Sweet Alert Notifications** - Notifikasi cantik dan interaktif untuk feedback user
+-   📄 **PDF Receipt Generation** - Generate struk penjualan dalam format PDF dengan DomPDF
+-   🎨 **Modern UI/UX** - Desain interface yang intuitif dengan komponen reusable dan konsisten
+-   🔄 **Real-time Updates** - Update data real-time menggunakan Livewire dan Alpine.js
 -   🛡️ **Secure Authentication** - Sistem autentikasi aman dengan Laravel Breeze
+-   📊 **Advanced Table Components** - Tabel reusable dengan sorting, pagination, dan filter terintegrasi
+-   🔍 **Smart Search & Filter** - Sistem pencarian dan filter yang powerful dengan debounced input
+-   📱 **Mobile-First Layout** - Layout yang dioptimalkan untuk mobile dengan progressive enhancement
+-   🚀 **Performance Optimized** - Lazy loading, caching, dan optimisasi query untuk performa maksimal
+-   📷 **Product Image Management** - Upload dan manajemen gambar produk dengan storage link
+-   🏷️ **Category Management** - Sistem kategori produk dengan nested structure
+-   💰 **Payment Processing** - Multiple payment methods (Cash, Card, Transfer) dengan kalkulasi otomatis
+-   📈 **Sales Analytics** - Analitik penjualan dengan chart interaktif menggunakan Chart.js
+-   🔄 **Inventory Tracking** - Tracking stok produk real-time dengan alert low stock
+-   📊 **Export & Reporting** - Export data ke berbagai format untuk reporting
+-   🎯 **User Experience Focus** - UX yang smooth dengan loading states dan error handling
+-   🔧 **Modular Architecture** - Kode yang maintainable dengan service layer dan repository pattern
+-   🧪 **Comprehensive Testing** - Test coverage dengan Pest PHP untuk reliability
+-   🚀 **Production Ready** - Optimized untuk deployment dengan caching dan asset bundling
 
-## 🛠️ Tech Stack (Tall Stack Laravel 12)
+### 🚀 **Upcoming Features**
+
+-   📱 **Auto Product Scan** - Scan produk otomatis menggunakan barcode/QR code scanner
+-   🔔 **Push Notifications** - Notifikasi real-time untuk low stock alerts dan sales updates
+-   📊 **Advanced Analytics** - Business intelligence dengan predictive analytics
+-   🔗 **API Integration** - RESTful API untuk integrasi dengan sistem eksternal
+-   📱 **Mobile App** - Aplikasi mobile companion untuk iOS dan Android
+-   🤖 **AI-Powered Insights** - Rekomendasi produk dan analisis tren menggunakan AI
+-   💳 **Payment Gateway Integration** - Integrasi dengan payment gateway populer
+-   📦 **Multi-Store Support** - Manajemen multiple store locations
+-   🌐 **Multi-Language Support** - Dukungan bahasa Indonesia dan English
+-   ☁️ **Cloud Backup** - Automatic backup ke cloud storage
+-   📊 **Custom Reports** - Report builder untuk laporan custom
+-   🔄 **Offline Mode** - Mode offline untuk operasi tanpa koneksi internet
+
+## �️ **Development Roadmap**
+
+### Phase 1: Core Enhancement (Current - v1.1.0) ✅
+
+-   [x] Advanced table components with sorting
+-   [x] Responsive filter layouts
+-   [x] Mobile-first design optimization
+-   [x] Real-time dashboard analytics
+-   [x] Enhanced POS transaction system
+
+### Phase 2: Automation & AI (Next - v1.2.0) 🔄
+
+-   [ ] **Auto Product Scan** - Barcode/QR code scanner integration
+    -   📱 Camera-based scanning untuk mobile devices
+    -   🖥️ Webcam support untuk desktop
+    -   🔄 Real-time product lookup dan cart addition
+    -   📊 Scan history dan analytics
+    -   🎯 Multiple barcode format support (EAN-13, QR Code, Code 128)
+    -   **Tech Stack**: QuaggaJS + Instascan + WebRTC API
+    -   **Implementation**: Livewire component dengan Alpine.js integration
+    -   **Database**: Scan history table untuk tracking dan analytics
+-   [ ] **AI-Powered Insights** - Product recommendations and trend analysis
+-   [ ] **Smart Inventory Alerts** - Automated low stock notifications
+-   [ ] **Predictive Analytics** - Sales forecasting and demand prediction
+
+### Phase 3: Connectivity & Integration (v1.3.0) 📅
+
+-   [ ] **API Integration** - RESTful API for external system integration
+-   [ ] **Payment Gateway** - Integration with popular payment providers
+-   [ ] **Multi-Store Support** - Management of multiple store locations
+-   [ ] **Cloud Backup** - Automated cloud storage backup
+
+### Phase 4: Advanced Features (v2.0.0) 🚀
+
+-   [ ] **Mobile App** - Native iOS and Android companion apps
+-   [ ] **Offline Mode** - Full offline operation capability
+-   [ ] **Custom Reports** - Advanced report builder with drag-and-drop
+-   [ ] **Multi-Language Support** - Indonesian and English localization
+
+### Phase 5: Enterprise Features (v2.1.0) 🏢
+
+-   [ ] **Advanced User Management** - Team collaboration and role delegation
+-   [ ] **Business Intelligence** - Advanced analytics and KPI dashboards
+-   [ ] **Integration Marketplace** - Third-party app integrations
+-   [ ] **Enterprise Security** - Enhanced security and compliance features
+
+## �🛠️ Tech Stack (Tall Stack Laravel 12)
 
 ### Backend
 
@@ -62,6 +155,8 @@ POS-Kasir adalah sistem Point of Sale yang dibangun dengan **Tall Stack Laravel 
 -   **SweetAlert2**: `^11.23.0` - Library alert dan modal yang cantik
 -   **Vite**: `^7.0.4` - Build tool modern untuk asset bundling
 -   **Pest**: `^4.0` - Framework testing yang elegan
+-   **QuaggaJS**: `^0.12.1` - Library barcode scanning (upcoming feature)
+-   **Instascan**: `^1.0.0` - QR code scanner library (upcoming feature)
 
 ## 📦 Dependencies Lengkap
 
@@ -88,7 +183,9 @@ POS-Kasir adalah sistem Point of Sale yang dibangun dengan **Tall Stack Laravel 
     "@tailwindcss/forms": "^0.5.2",
     "tailwindcss": "^3.1.0",
     "vite": "^7.0.4",
-    "axios": "^1.11.0"
+    "axios": "^1.11.0",
+    "quagga2": "^0.0.18",
+    "instascan": "^1.0.0"
 }
 ```
 
@@ -269,6 +366,7 @@ pos-kasir/
 │   │   └── Livewire/             # Komponen Livewire
 │   │       ├── Category/         # Manajemen kategori
 │   │       ├── Pos/              # Sistem POS
+│   │       │   └── Scanner/      # Komponen scanner (upcoming)
 │   │       ├── Product/          # Manajemen produk
 │   │       ├── Sale/             # Manajemen penjualan
 │   │       └── Transaction/      # Manajemen transaksi
@@ -290,14 +388,17 @@ pos-kasir/
 │   ├── css/
 │   │   └── app.css              # Tailwind CSS styles
 │   ├── js/
-│   │   └── app.js               # Alpine.js dan Chart.js setup
+│   │   ├── app.js               # Alpine.js dan Chart.js setup
+│   │   ├── scanner.js           # Barcode/QR scanner setup (upcoming)
+│   │   └── utils.js             # Utility functions
 │   └── views/
 │       ├── components/          # Blade components
 │       │   ├── auth/            # Authentication components
 │       │   ├── dashboard/       # Dashboard components
 │       │   ├── form/            # Form components
 │       │   ├── landing/         # Landing page components
-│       │   └── layout/          # Layout components
+│       │   ├── layout/          # Layout components
+│       │   └── scanner/         # Scanner components (upcoming)
 │       ├── livewire/            # Livewire view components
 │       └── auth/                # Authentication views
 ├── routes/
@@ -379,6 +480,20 @@ pos-kasir/
 - quantity (integer)
 - unit_price (decimal)
 - total_price (decimal)
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+#### 6. Product Scans Table (Upcoming Feature)
+
+```sql
+- id (Primary Key)
+- user_id (Foreign Key → users.id)
+- product_id (Foreign Key → products.id)
+- barcode_data (varchar) - Raw barcode/QR data
+- scan_type (enum: barcode, qr_code)
+- device_info (json) - Camera/webcam information
+- scan_result (enum: success, failed, not_found)
 - created_at (timestamp)
 - updated_at (timestamp)
 ```
@@ -476,6 +591,10 @@ php artisan make:test PosTransactionTest
 
 # Buat unit test
 php artisan make:test ProductModelTest --unit
+
+# Upcoming: Scanner tests
+# php artisan make:test ProductScannerTest
+# php artisan make:test BarcodeScanTest --unit
 ```
 
 ## 🚀 Deployment
@@ -542,6 +661,7 @@ Berikut adalah diagram relasi entitas dari sistem POS-Kasir:
 -   **Products**: Tabel produk dengan relasi ke categories
 -   **Sales**: Tabel header transaksi penjualan
 -   **Sale Items**: Tabel detail item dalam satu transaksi penjualan
+-   **Product Scans**: Tabel untuk tracking scan history (upcoming feature)
 -   **Permissions & Roles**: Tabel untuk sistem role dan permission (Spatie Laravel Permission)
 
 ### Relasi Utama:
@@ -550,6 +670,8 @@ Berikut adalah diagram relasi entitas dari sistem POS-Kasir:
 -   `Categories` ↔ `Products` (One-to-Many): Satu kategori bisa memiliki banyak produk
 -   `Products` ↔ `Sale Items` (One-to-Many): Satu produk bisa ada di banyak item penjualan
 -   `Sales` ↔ `Sale Items` (One-to-Many): Satu transaksi bisa memiliki banyak item
+-   `Users` ↔ `Product Scans` (One-to-Many): Satu user bisa memiliki banyak scan history
+-   `Products` ↔ `Product Scans` (One-to-Many): Satu produk bisa memiliki banyak scan history
 
 ## 🔄 Flowchart Sistem
 
@@ -1060,13 +1182,63 @@ laravel-12/
 
 Kontribusi sangat diterima! Silakan buat Pull Request. Untuk perubahan besar, silakan buka issue terlebih dahulu untuk mendiskusikan apa yang ingin Anda ubah.
 
+### 🚀 **Fitur yang Dibutuhkan Kontribusi**
+
+Kami sangat membutuhkan kontribusi untuk fitur-fitur berikut:
+
+#### 📱 **Auto Product Scanner** (High Priority)
+
+-   **Tech Stack**: QuaggaJS, Instascan, WebRTC API
+-   **Skills Needed**: JavaScript, Livewire, Computer Vision
+-   **Difficulty**: Advanced
+-   **Impact**: High - Akan merevolusi cara pengguna menambahkan produk
+
+#### 🤖 **AI-Powered Analytics** (Medium Priority)
+
+-   **Tech Stack**: Python, Machine Learning, Laravel API
+-   **Skills Needed**: Python, Data Science, API Development
+-   **Difficulty**: Expert
+-   **Impact**: High - Business Intelligence
+
+#### 📱 **Mobile App Development** (Medium Priority)
+
+-   **Tech Stack**: React Native, Flutter, atau Ionic
+-   **Skills Needed**: Mobile Development, API Integration
+-   **Difficulty**: Advanced
+-   **Impact**: High - Expand reach to mobile users
+
+### 📋 **Panduan Kontribusi**
+
 1. Fork project
-2. Buat feature branch Anda (`git checkout -b feature/FiturKeren`)
-3. Commit perubahan Anda (`git commit -m 'Tambah FiturKeren'`)
-4. Push ke branch (`git push origin feature/FiturKeren`)
+2. Buat feature branch Anda (`git checkout -b feature/scanner-integration`)
+3. Commit perubahan Anda (`git commit -m 'Add barcode scanner integration'`)
+4. Push ke branch (`git push origin feature/scanner-integration`)
 5. Buka Pull Request
 
+### 💡 **Ide Kontribusi Lainnya**
+
+-   Unit tests untuk komponen baru
+-   Dokumentasi API
+-   Performance optimizations
+-   UI/UX improvements
+-   Bug fixes dan issue resolution
+
 ## 📝 Changelog
+
+### Versi 1.1.0 (Latest Update - October 2025)
+
+-   ✨ **Enhanced Table Components** - Konversi semua tabel dashboard ke komponen reusable dengan sorting terintegrasi
+-   📊 **Advanced Sorting System** - Implementasi sorting pada semua kolom tabel (Name, Price, Stock, Date, dll)
+-   🔍 **Improved Search & Filter** - Layout filter yang lebih responsive dengan grid adaptive
+-   📱 **Mobile-First Responsive Design** - Optimisasi layout untuk semua ukuran layar dengan progressive enhancement
+-   🎨 **UI/UX Enhancements** - Perbaikan konsistensi komponen dan user experience
+-   🔧 **Code Refactoring** - Pemisahan logic sorting ke komponen reusable untuk maintainability
+-   📋 **Transaction Management** - Enhanced dengan filter date range dan payment type
+-   🏷️ **Category & Product Management** - Improved dengan image upload dan stock tracking
+-   💰 **Sales Analytics** - Dashboard dengan real-time statistics dan chart interaktif
+-   🚀 **Performance Optimization** - Lazy loading dan query optimization untuk performa maksimal
+-   📱 **Touch-Friendly Interface** - Optimisasi untuk perangkat touchscreen
+-   🔄 **Real-time Updates** - Enhanced Livewire reactivity untuk semua komponen
 
 ### Versi 1.0.0
 
